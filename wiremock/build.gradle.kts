@@ -5,5 +5,5 @@ dependencies {
 }
 
 application {
-    mainClassName = "dgroomes.App"
+    mainClassName = "dgroomes.Main"
 }
