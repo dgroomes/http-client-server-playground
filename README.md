@@ -5,4 +5,10 @@ Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>
 ### Instructions
 
 * Run a mock HTTP server with `./gradlew server-wiremock:run`
-* NOT YET IMPLEMENTED Run the client test suite with TODO
+* Run the client test suite with `./gradlew client:run`
+
+### TODO
+
+* Implement scenario: continuous traffic 
+* Implement scenario: continuous traffic without calling "#close()"
+  * How does failure present itself?   
