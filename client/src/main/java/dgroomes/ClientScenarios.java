@@ -40,14 +40,16 @@ public class ClientScenarios {
      *
      * @param client     client
      * @param fixedDelay fixed delay between requests
+     * @param closeResponse if true, then close the response object
      */
-    public static void continuousRequests(Client client, Duration fixedDelay) throws IOException, InterruptedException {
-        log.info("Continuously making requests to '/message' with a fixed delay of {}", fixedDelay);
+    public static void continuousRequests(Client client, Duration fixedDelay, boolean closeResponse) throws IOException, InterruptedException {
+        log.info("Continuously making requests to '/message' with a fixed delay of {} and with closeResponse: {}",
+                fixedDelay, closeResponse);
         int counter = 0;
         try {
             //noinspection InfiniteLoopStatement
             while (true) {
-                client.message();
+                client.message(closeResponse);
                 counter++;
                 //noinspection BusyWait
                 Thread.sleep(fixedDelay.toMillis());

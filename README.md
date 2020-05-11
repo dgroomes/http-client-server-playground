@@ -14,3 +14,4 @@ Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>
 
 * Implement scenario: continuous requests without calling "#close()"
   * How does failure present itself?
+* Enable connection statistics <https://www.eclipse.org/jetty/documentation/current/statistics-handler.html>

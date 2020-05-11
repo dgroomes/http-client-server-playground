@@ -29,6 +29,20 @@ public class Client {
     /**
      * Execute an HTTP GET request to the server at the "/message" path
      *
+     * @param closeResponse if true, then close the HTTP response
+     * @return the "message". The body of the HTTP response.
+     */
+    public String message(boolean closeResponse) throws IOException {
+        if (closeResponse) {
+            return message();
+        } else {
+            return messageNoClose();
+        }
+    }
+
+    /**
+     * Execute an HTTP GET request to the server at the "/message" path
+     *
      * @return the "message". The body of the HTTP response.
      */
     public String message() throws IOException {
@@ -47,10 +61,26 @@ public class Client {
         */
         log.debug("Executing request to '/message'");
         try (CloseableHttpResponse resp = httpClient.execute(httpGet)) {
-            log.debug("GET request to '/message' returned with status code: {}", resp.getStatusLine());
-            HttpEntity entity = resp.getEntity();
-            // Extract the body of the response. EntityUtils ensures the response entity is fully consumed.
-            return EntityUtils.toString(entity);
+            return handleResponse(resp);
         }
+    }
+
+    /**
+     * Execute an HTTP GET request to the server at the "/message" path but DO NOT close the HTTP response
+     *
+     * @return the "message". The body of the HTTP response.
+     */
+    public String messageNoClose() throws IOException {
+        HttpGet httpGet = new HttpGet(serverOrigin + "/message");
+        log.debug("Executing request to '/message' but NOT closing the HTTP response");
+        var resp = httpClient.execute(httpGet);
+        return handleResponse(resp);
+    }
+
+    private static String handleResponse(CloseableHttpResponse resp) throws IOException {
+        log.debug("GET request to '/message' returned with status code: {}", resp.getStatusLine());
+        HttpEntity entity = resp.getEntity();
+        // Extract the body of the response. EntityUtils ensures the response entity is fully consumed.
+        return EntityUtils.toString(entity);
     }
 }
