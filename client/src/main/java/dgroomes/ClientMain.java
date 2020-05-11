@@ -18,7 +18,7 @@ public class ClientMain {
 
 //        ClientScenarios.singleRequest(client);
 //        ClientScenarios.multipleRequests(client, 3);
-        ClientScenarios.continuousRequests(client, Duration.ofMillis(FIXED_DELAY_MILLIS), true);
-//        ClientScenarios.continuousRequests(client, Duration.ofMillis(FIXED_DELAY_MILLIS), false);
+//        ClientScenarios.continuousRequests(client, Duration.ofMillis(FIXED_DELAY_MILLIS), true);
+        ClientScenarios.continuousRequests(client, Duration.ofMillis(FIXED_DELAY_MILLIS), false);
     }
 }
