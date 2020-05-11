@@ -38,5 +38,6 @@ public class ServerWireMockMain {
         var startDuration = Duration.between(start, Instant.now());
         log.info("WireMock server started!");
         log.debug("Boot up time was {}", startDuration);
+        log.debug("View statistics at http://localhost:{}/stats", PORT);
     }
 }
