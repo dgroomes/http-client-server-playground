@@ -9,6 +9,5 @@ Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>
 
 ### TODO
 
-* Implement scenario: continuous traffic 
-* Implement scenario: continuous traffic without calling "#close()"
+* Implement scenario: continuous requests without calling "#close()"
   * How does failure present itself?   

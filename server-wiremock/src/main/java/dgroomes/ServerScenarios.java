@@ -5,9 +5,12 @@ import com.github.tomakehurst.wiremock.client.WireMock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Scenarios {
+/**
+ * Serving HTTP requests in various scenarios
+ */
+public class ServerScenarios {
 
-    private static final Logger log = LoggerFactory.getLogger(Scenarios.class);
+    private static final Logger log = LoggerFactory.getLogger(ServerScenarios.class);
 
     /**
      * Register a 'happy path' scenario
