@@ -17,6 +17,7 @@ public class ClientMain {
         var client = new Client(HttpClients.createDefault(), "http://localhost:8070");
 
 //        ClientScenarios.singleRequest(client);
+//        ClientScenarios.multipleRequests(client, 3);
         ClientScenarios.continuousRequests(client, Duration.ofMillis(FIXED_DELAY_MILLIS));
     }
 }

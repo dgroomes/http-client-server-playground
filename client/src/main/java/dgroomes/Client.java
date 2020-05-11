@@ -45,6 +45,7 @@ public class Client {
 
         Using a try-with-resources block which will automatically call "#close()".
         */
+        log.debug("Executing request to '/message'");
         try (CloseableHttpResponse resp = httpClient.execute(httpGet)) {
             log.debug("GET request to '/message' returned with status code: {}", resp.getStatusLine());
             HttpEntity entity = resp.getEntity();

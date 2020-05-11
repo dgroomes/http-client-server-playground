@@ -17,8 +17,22 @@ public class ClientScenarios {
      * Execute a single request
      */
     public static void singleRequest(Client client) throws IOException {
+        log.info("Executing a single request");
         var message = client.message();
         log.info("Got message: {}", message);
+    }
+
+    /**
+     * Execute multiple requests
+     *
+     * @param client           client
+     * @param numberOfRequests the number of requests
+     */
+    public static void multipleRequests(Client client, int numberOfRequests) throws IOException {
+        log.info("Executing {} requests", numberOfRequests);
+        for (int i = 1; i <= numberOfRequests; i++) {
+            client.message();
+        }
     }
 
     /**

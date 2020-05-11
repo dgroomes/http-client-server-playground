@@ -28,6 +28,7 @@ public class ServerWireMockMain {
                 JVM would run out of memory.
                  */
                 .disableRequestJournal();
+        WireMockUtil.configureStatistics(options);
         var wireMockServer = new WireMockServer(options);
         log.debug("Starting the WireMock server");
         wireMockServer.start();
