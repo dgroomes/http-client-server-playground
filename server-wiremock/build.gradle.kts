@@ -5,5 +5,5 @@ dependencies {
 }
 
 application {
-    mainClassName = "dgroomes.Main"
+    mainClassName = "dgroomes.ServerWireMockMain"
 }

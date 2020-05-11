@@ -4,5 +4,5 @@ Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>
 
 ### Instructions
 
-* Run a mock HTTP server with `./gradlew :wiremock:run`
+* Run a mock HTTP server with `./gradlew server-wiremock:run`
 * NOT YET IMPLEMENTED Run the client test suite with TODO

@@ -6,9 +6,9 @@ package dgroomes;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
+class ClientMainTest {
     @Test void appHasAGreeting() {
-        App classUnderTest = new App();
+        ClientMain classUnderTest = new ClientMain();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
 }

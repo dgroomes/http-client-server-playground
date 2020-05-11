@@ -14,9 +14,9 @@ import java.time.Instant;
  * <p>
  * See http://wiremock.org/
  */
-public class Main {
+public class ServerWireMockMain {
 
-    private static final Logger log = LoggerFactory.getLogger(Main.class);
+    private static final Logger log = LoggerFactory.getLogger(ServerWireMockMain.class);
     public static final int PORT = 8070;
 
     public static void main(String[] args) throws InterruptedException {

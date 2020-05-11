@@ -10,7 +10,7 @@ val slf4jVersion = "1.7.30"
 val wireMockVersion = "2.26.3"
 val junitJupiterVersion = "5.6.0"
 
-allprojects {
+subprojects {
     // Do we really need to declare this java plugin here *and* at the top of this file?
     apply(plugin = "java")
     apply(plugin = "application")
