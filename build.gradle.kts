@@ -25,6 +25,7 @@ subprojects {
         constraints {
             implementation(group = "org.slf4j", name = "slf4j-api", version = slf4jVersion)
             implementation(group = "org.slf4j", name = "slf4j-simple", version = slf4jVersion)
+            implementation(group = "org.slf4j", name = "jcl-over-slf4j", version = slf4jVersion)
             implementation(group = "com.github.tomakehurst", name = "wiremock-jre8", version = wireMockVersion)
             implementation(group = "com.github.tomakehurst", name = "wiremock-standalone", version = wireMockVersion)
         }

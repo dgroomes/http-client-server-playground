@@ -16,6 +16,7 @@ public class ClientMain {
     public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException {
         var client = new Client(HttpClients.createDefault(), "http://localhost:8070");
 
+//        ClientScenarios.singleRequest(client);
         ClientScenarios.continuousRequests(client, Duration.ofMillis(FIXED_DELAY_MILLIS));
     }
 }
