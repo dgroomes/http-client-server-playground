@@ -8,7 +8,7 @@ Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>
 * Run the client test suite with `./gradlew client:run`
 * Observe the server statistics by going to <http://localhost:8070/stats/> in your browser
   * Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
-    and the amount of memory used by the server. 
+    and the amount of memory used by the server.
 
 ### TODO
 

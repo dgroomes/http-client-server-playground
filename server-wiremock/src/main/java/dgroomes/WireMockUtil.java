@@ -4,6 +4,7 @@ import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.common.JettySettings;
 import com.github.tomakehurst.wiremock.core.Options;
+import com.github.tomakehurst.wiremock.core.WireMockApp;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.http.AdminRequestHandler;
 import com.github.tomakehurst.wiremock.http.HttpServer;
@@ -25,6 +26,8 @@ import org.eclipse.jetty.servlet.StatisticsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+
 /**
  * Utilities for working with WireMock
  */
@@ -33,9 +36,9 @@ public class WireMockUtil {
     private static final Logger log = LoggerFactory.getLogger(WireMockUtil.class);
 
     /**
-     * Configure the Jetty server with statistics
+     * Configure WireMock's underlying Jetty server with the "statistics" feature
      * <p>
-     * This has a few effects:
+     * This has a couple effects:
      * 1. Enables Jetty statistics, like number of requests and number of connections, to be available at the URL
      * "/stats/"
      * 2. Enables graceful shutdown
@@ -59,6 +62,10 @@ public class WireMockUtil {
             public HttpServer buildHttpServer(Options options, AdminRequestHandler adminRequestHandler, StubRequestHandler stubRequestHandler) {
                 return new Jetty94HttpServer(options, adminRequestHandler, stubRequestHandler) {
 
+                    /**
+                     * Hook into the handler configuration code and splice in the StatisticsHandler and the
+                     * StatisticsServlet
+                     */
                     @Override
                     protected HandlerCollection createHandler(Options options, AdminRequestHandler adminRequestHandler, StubRequestHandler stubRequestHandler) {
                         var handlers = super.createHandler(options, adminRequestHandler, stubRequestHandler);
@@ -80,6 +87,11 @@ public class WireMockUtil {
                         return new HandlerCollection(statisticsHandler);
                     }
 
+                    /**
+                     * Enable connector statistics.
+                     *
+                     * See https://www.eclipse.org/jetty/documentation/current/statistics-handler.html#connector-statistics
+                     */
                     @Override
                     protected ServerConnector createServerConnector(String bindAddress, JettySettings jettySettings, int port, NetworkTrafficListener listener, ConnectionFactory... connectionFactories) {
                         var serverConnector = super.createServerConnector(bindAddress, jettySettings, port, listener, connectionFactories);
@@ -89,6 +101,39 @@ public class WireMockUtil {
                 };
             }
         });
+    }
+
+    /**
+     * Configure a root directory for WireMock to load mappings from. This directory should contain the requisite
+     * "__files/" and "mappings/__files/" directories.
+     */
+    public static void configureRootDir(WireMockConfiguration options, String rootDir) {
+        var currentDir = new File("").getAbsolutePath();
+        var rootDirFile = new File(rootDir);
+        log.debug("Configuring a root directory. Asserting that it exists. Current dir: {}\troot dir: {}", currentDir,
+                rootDir);
+
+        if (!rootDirFile.exists()) {
+            var msg = String.format("Attempted to configure a WireMock root dir but the directory does not exist! %s",
+                    rootDirFile.getAbsolutePath());
+            throw new IllegalArgumentException(msg);
+        }
+
+        var filesDir = new File(rootDirFile, WireMockApp.FILES_ROOT);
+        if (!filesDir.exists()) {
+            log.info("WireMock '{}' directory does not exist in the root. Expected to find it at {}. It is not " +
+                    "required but you need to add this directory if your WireMock stubs depend on supporting " +
+                    "files.", WireMockApp.FILES_ROOT, filesDir.getAbsolutePath());
+        }
+
+        var mappingsDir = new File(rootDirFile, WireMockApp.MAPPINGS_ROOT);
+        if (!mappingsDir.exists()) {
+            throw new IllegalArgumentException(String.format("WireMock '%s' directory does not exist in the root. " +
+                            "Expected to find it at %s. It is required.", WireMockApp.MAPPINGS_ROOT,
+                    mappingsDir.getAbsolutePath()));
+        }
+
+        options.withRootDirectory(rootDir);
     }
 
     public static void register(WireMock wireMock, MappingBuilder mappingBuilder) {
