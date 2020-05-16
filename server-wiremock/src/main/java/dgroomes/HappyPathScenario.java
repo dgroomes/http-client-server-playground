@@ -16,6 +16,7 @@ public class HappyPathScenario implements ServerScenario {
     @Override
     public void configureOptions(WireMockConfiguration options) {
         log.debug("Configuring WireMockConfiguration for the 'happy path' scenario");
+        WireMockUtil.configureStatistics(options);
     }
 
     @Override

@@ -4,6 +4,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,10 @@ public class Client {
 
     private final CloseableHttpClient httpClient;
     private final String serverOrigin;
+
+    public Client(String serverOrigin) throws IOException, URISyntaxException {
+        this(HttpClients.createDefault(), serverOrigin);
+    }
 
     public Client(CloseableHttpClient httpClient, String serverOrigin) throws IOException, URISyntaxException {
         this.httpClient = httpClient;

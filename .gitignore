@@ -3,3 +3,8 @@ build/
 out/
 .idea/
 .DS_Store
+
+# JMeter output
+*.jtl
+jmeter.log
+test-report/

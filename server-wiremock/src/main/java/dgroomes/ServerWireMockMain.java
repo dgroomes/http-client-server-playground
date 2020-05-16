@@ -21,7 +21,13 @@ public class ServerWireMockMain {
 
     public static void main(String[] args) {
         var start = Instant.now();
-        var options = new WireMockConfiguration().port(PORT);
+        var options = new WireMockConfiguration()
+                .port(PORT)
+                /*
+                 With GZIP compression enabled, the Apache HTTP Component's "wire" logging prints the gzipped contents
+                 of the HTTP request/response bodies. This is hardly useful. So, disable GZIP compression.
+                 */
+                .gzipDisabled(true);
 
         var scenario = getScenario();
         scenario.configureOptions(options);
@@ -40,7 +46,7 @@ public class ServerWireMockMain {
     }
 
     private static ServerScenario getScenario() {
-//        return new HappyPathScenario();
-        return new OccasionalFailureScenario();
+        return new HappyPathScenario();
+//        return new OccasionalFailureScenario();
     }
 }

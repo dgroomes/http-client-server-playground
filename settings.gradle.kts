@@ -1,3 +1,3 @@
 rootProject.name = "httcomponents-playground"
 
-include("client", "server-wiremock")
+include("client", "client-runner", "server-wiremock")

@@ -2,10 +2,15 @@
 
 Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>.
 
+---
+
+This project includes example code snippets and a JMeter load test.
+
 ### Instructions
 
 * Run a mock HTTP server with `./gradlew server-wiremock:run`
-* Run the client test suite with `./gradlew client:run`
+* Run the client test suite with `./gradlew client-runner:run`
+  * NOT YET IMPLEMENTED Alternatively, run the JMeter load test with `./run-jmeter-load-test.sh` 
 * Observe the server statistics by going to <http://localhost:8070/stats/> in your browser
   * Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
     and the amount of memory used by the server.
