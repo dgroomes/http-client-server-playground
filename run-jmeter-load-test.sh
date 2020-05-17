@@ -3,6 +3,8 @@
 # The script will first delete existing test run output files (i.e. the .jtl file and test report directory) before
 # starting the test.
 
+set -eu
+
 assertJavaVersion14() {
   # `java --full-version` will print one line to standard out containing a prefix and the "Version String". See https://openjdk.java.net/jeps/223
   # There's a regular expression in the document, but it is not practical to use. Instead, we are simply interested in
@@ -33,6 +35,8 @@ if [[ -d test-report ]]; then
 fi
 
 export JVM_ARGS="-Dnashorn.args=--no-deprecation-warning --enable-preview"
+# Run with JVM debug
+#export JVM_ARGS="-Dnashorn.args=--no-deprecation-warning --enable-preview -agentlib:jdwp=transport=dt_socket,server=n,address=localhost:5005,suspend=y"
 jmeter -n \
   -t test-plan.jmx \
   -l log.jtl \

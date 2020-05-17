@@ -5,12 +5,12 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 /**
  * HTTP client backed by Apache HTTP Components <https://hc.apache.org/index.html>
@@ -22,12 +22,19 @@ public class Client {
     private final CloseableHttpClient httpClient;
     private final String serverOrigin;
 
-    public Client(String serverOrigin) throws IOException, URISyntaxException {
-        this(HttpClients.createDefault(), serverOrigin);
+    public Client(String serverOrigin) {
+        this(serverOrigin, false);
     }
 
-    public Client(CloseableHttpClient httpClient, String serverOrigin) throws IOException, URISyntaxException {
-        this.httpClient = httpClient;
+    public Client(String serverOrigin, boolean pooling) {
+        var builder = HttpClients.custom();
+        if (pooling) {
+            PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+            cm.setMaxTotal(400);
+            cm.setDefaultMaxPerRoute(100);
+            builder.setConnectionManager(cm);
+        }
+        this.httpClient = builder.build();
         this.serverOrigin = serverOrigin;
     }
 

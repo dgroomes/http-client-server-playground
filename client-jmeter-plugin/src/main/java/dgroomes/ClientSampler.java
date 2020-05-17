@@ -1,5 +1,6 @@
 package dgroomes;
 
+import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.protocol.java.sampler.AbstractJavaSamplerClient;
 import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
 import org.apache.jmeter.samplers.SampleResult;
@@ -31,23 +32,38 @@ public class ClientSampler extends AbstractJavaSamplerClient {
      *
      * @param serverOrigin the origin of the HTTP server this sampler will make requests to
      */
-    public static void initClient(String serverOrigin) throws IOException, URISyntaxException {
+    public static void initClient(String serverOrigin, boolean pooling) throws IOException, URISyntaxException {
         var localRef = CLIENT;
         if (localRef == null) {
             synchronized (ClientSampler.class) {
                 localRef = CLIENT;
                 if (localRef == null) {
-                    CLIENT = new Client(serverOrigin);
+                    CLIENT = new Client(serverOrigin, pooling);
                 }
             }
         }
     }
 
     @Override
+    public Arguments getDefaultParameters() {
+        Arguments params = new Arguments();
+        params.addArgument("Pooling", "false");
+        return params;
+    }
+
+    @Override
     public void setupTest(JavaSamplerContext context) {
         super.setupTest(context);
         try {
-            initClient(SERVER_ORIGIN);
+            boolean pooling;
+            var poolingParam = context.getParameter("Pooling");
+            if (poolingParam == null) {
+                pooling = false;
+            } else {
+                log.info("Detected 'Pooling' param with value {}", poolingParam);
+                pooling = Boolean.parseBoolean(poolingParam);
+            }
+            initClient(SERVER_ORIGIN, pooling);
         } catch (IOException | URISyntaxException e) {
             throw new IllegalStateException(e);
         }

@@ -35,12 +35,12 @@ Edit the test plan with `./edit-jmeter-load-test.sh`
 
 ### TODO
 
-* Use connection pooling in the client
-  * How can we get the client to fail? How do we leak connections?
+* How can we get the client to fail? How do we leak connections?
   
 ### Notes
 
-* Check open file descriptors by port `lsof -p 123` 
+* Check open file descriptors by port `lsof -p 123 | wc -l` 
+  * Useful to detect connection leaks (I think)
   * <https://stackoverflow.com/a/38732186>
 * Stop JMeter test. It should stop gracefully (but it might still fail!) and produce the test reports
   * `stoptest.sh` This script is in the JMeter installation's `/bin` dir
