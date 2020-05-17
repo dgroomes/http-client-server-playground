@@ -20,7 +20,7 @@ Follow these instructions to run a scenario:
   1. Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
     and the amount of memory used by the server.
 
-### `client-jmeter-plugin`
+### `client-jmeter-plugin/`
 
 This sub-project enables using JMeter to define and execute test plans against the Apache HTTP Components code. It 
 builds a JMeter plugin distribution.

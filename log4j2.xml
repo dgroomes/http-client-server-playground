@@ -1,0 +1,47 @@
+<!-- This log4j2.xml configuration file is meant for configuring JMeter's logging. Ideally, this file should be named
+something more specific, like jmeter-log4j2.xml, but I couldn't figure out how to get JMeter to load a LOG4J2
+configuration file other than the the convential "log4j2.xml"
+
+I copied and pasted the contents of this file from https://jmeter.apache.org/usermanual/get-started.html#logging and
+added some tweaks.
+ -->
+
+<Configuration status="WARN" packages="org.apache.jmeter.gui.logging">
+
+    <Appenders>
+
+        <!-- The main log file appender to jmeter.log in the directory from which JMeter was launched, by default. -->
+        <File name="jmeter-log" fileName="${sys:jmeter.logfile:-jmeter.log}" append="false">
+            <PatternLayout>
+                <!-- See the docs on Log4J2 patter layouts at https://logging.apache.org/log4j/2.x/manual/layouts.html
+                "Pattern Layout" -->
+                <pattern>%d{HH:mm:ss} %t %p %c{1.}: %m%n</pattern>
+            </PatternLayout>
+        </File>
+
+        <!-- Log appender for GUI Log Viewer. See below. -->
+        <GuiLogEvent name="gui-log-event">
+            <PatternLayout>
+                <pattern>%d %p %c{1.}: %m%n</pattern>
+            </PatternLayout>
+        </GuiLogEvent>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Root logger -->
+        <Root level="info">
+            <AppenderRef ref="jmeter-log"/>
+            <AppenderRef ref="gui-log-event"/>
+        </Root>
+
+        <!--
+          # Apache HttpClient logging config.  Useful debugging
+        -->
+        <Logger name="org.apache.http" level="error"/>
+        <Logger name="org.apache.http.wire" level="error"/>
+
+    </Loggers>
+
+</Configuration>

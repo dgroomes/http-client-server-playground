@@ -33,6 +33,11 @@ if [[ -d test-report ]]; then
 fi
 
 export JVM_ARGS="-Dnashorn.args=--no-deprecation-warning --enable-preview"
-jmeter -n -t test-plan.jmx -l log.jtl -e -o test-report
+jmeter -n \
+  -t test-plan.jmx \
+  -l log.jtl \
+  -e \
+  -o test-report \
+  -Lorg.apache.jmeter.protocol.java.sampler=DEBUG
 
 open test-report/index.html
