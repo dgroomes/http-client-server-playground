@@ -13,11 +13,18 @@ public class HappyPathScenario implements ServerScenario {
 
     private static final Logger log = LoggerFactory.getLogger(HappyPathScenario.class);
     public static final int FIXED_DELAY_MILLISECONDS = 100;
+    public static final int CONTAINER_THREADS = 200;
 
     @Override
     public void configureOptions(WireMockConfiguration options) {
         log.debug("Configuring WireMockConfiguration for the 'happy path' scenario");
         WireMockUtil.configureStatistics(options);
+        options.containerThreads(CONTAINER_THREADS)
+                /*
+                It's important to disable the request journal when there will be a high volume of traffic or else the
+                JVM would run out of memory.
+                */
+                .disableRequestJournal();
     }
 
     @Override

@@ -37,3 +37,13 @@ Edit the test plan with `./edit-jmeter-load-test.sh`
 
 * Use connection pooling in the client
   * How can we get the client to fail? How do we leak connections?
+  
+### Notes
+
+* Check open file descriptors by port `lsof -p 123` 
+  * <https://stackoverflow.com/a/38732186>
+* Stop JMeter test. It should stop gracefully (but it might still fail!) and produce the test reports
+  * `stoptest.sh` This script is in the JMeter installation's `/bin` dir
+* Issues relating to the statisticshandler and Jetty async
+  * <https://github.com/eclipse/jetty.project/issues/2717>
+  * <https://www.eclipse.org/lists/jetty-dev/msg02886.html> 

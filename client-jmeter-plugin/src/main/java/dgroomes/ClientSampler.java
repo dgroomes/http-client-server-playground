@@ -55,7 +55,6 @@ public class ClientSampler extends AbstractJavaSamplerClient {
 
     @Override
     public SampleResult runTest(JavaSamplerContext context) {
-        log.info("Running the SerializerSampler test!");
         var sampleResult = new SampleResult();
         sampleResult.sampleStart();
         try {
