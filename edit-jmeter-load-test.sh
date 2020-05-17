@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# Run the JMeter load test and once it is finished open the reporting in the browser.
-# The script will first delete existing test run output files (i.e. the .jtl file and test report directory) before
-# starting the test.
+# Edit the JMeter load test
 
 assertJavaVersion14() {
   # `java --full-version` will print one line to standard out containing a prefix and the "Version String". See https://openjdk.java.net/jeps/223
@@ -24,15 +22,5 @@ assertJavaVersion14() {
 
 assertJavaVersion14
 
-if [[ -f log.jtl ]]; then
-  rm log.jtl
-fi
-
-if [[ -d test-report ]]; then
-  rm -rf test-report
-fi
-
 export JVM_ARGS="-Dnashorn.args=--no-deprecation-warning --enable-preview"
-jmeter -n -t test-plan.jmx -l log.jtl -e -o test-report
-
-open test-report/index.html
+jmeter -t test-plan.jmx
