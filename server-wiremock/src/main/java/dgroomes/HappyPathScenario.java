@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 public class HappyPathScenario implements ServerScenario {
 
     private static final Logger log = LoggerFactory.getLogger(HappyPathScenario.class);
+    public static final int FIXED_DELAY_MILLISECONDS = 100;
 
     @Override
     public void configureOptions(WireMockConfiguration options) {
@@ -25,7 +26,8 @@ public class HappyPathScenario implements ServerScenario {
         var request = WireMock.get("/message");
         var response = ResponseDefinitionBuilder.responseDefinition().withBody("""
                 hello world!
-                """);
+                """)
+                .withFixedDelay(FIXED_DELAY_MILLISECONDS);
         WireMockUtil.register(client, request.willReturn(response));
     }
 }
