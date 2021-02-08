@@ -1,4 +1,4 @@
-rootProject.name = "httcomponents-playground"
+rootProject.name = "httpcomponents-playground"
 
 include("client",
         "client-runner",
