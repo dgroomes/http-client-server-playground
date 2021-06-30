@@ -1,6 +1,6 @@
 # httpcomponents-playground
 
-Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>.
+📚 Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>.
 
 ---
 
@@ -14,7 +14,7 @@ This project includes example code snippets and a JMeter load test. It is broken
 
 Follow these instructions to run a scenario:
 
-1. Use Java 15
+1. Use Java 16
 1. Run a mock HTTP server with `./gradlew server-wiremock:run`
 1. Run the client test suite with `./gradlew client-runner:run`
 1. Observe the server statistics by going to <http://localhost:8070/stats/> in your browser

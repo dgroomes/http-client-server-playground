@@ -5,7 +5,7 @@
 
 set -eu
 
-assertJavaVersion15() {
+assertJavaVersion16() {
   # `java --full-version` will print one line to standard out containing a prefix and the "Version String". See https://openjdk.java.net/jeps/223
   # There's a regular expression in the document, but it is not practical to use. Instead, we are simply interested in
   # the Java MAJOR version. Java releases follow the MAJOR.MINOR.SECURITY pattern EXCEPT for early access releases which
@@ -14,8 +14,8 @@ assertJavaVersion15() {
   VERSION_OUTPUT=$("$JAVA_HOME/bin/java" --full-version)
   if [[ $VERSION_OUTPUT =~ ([0-9]+) ]]; then
     local major=${BASH_REMATCH[1]}
-    if [[ $major != 15 ]]; then
-      echo >&2 "Requires Java 15 but found Java $major"
+    if [[ $major != 16 ]]; then
+      echo >&2 "Requires Java 16 but found Java $major"
       exit 1
     fi
   else
@@ -24,7 +24,7 @@ assertJavaVersion15() {
   fi
 }
 
-assertJavaVersion15
+assertJavaVersion16
 
 if [[ -f log.jtl ]]; then
   rm log.jtl

@@ -5,19 +5,9 @@ plugins {
 
 application {
     // Define the main class for the application.
-    mainClassName = "dgroomes.ClientMain"
+    mainClass.set("dgroomes.ClientMain")
 }
 
 dependencies {
     implementation(project(":client"))
-}
-
-tasks {
-    named<CreateStartScripts>("startScripts") {
-        defaultJvmOpts = listOf("--enable-preview")
-    }
-
-    named<JavaExec>("run") {
-        jvmArgs = listOf("--enable-preview")
-    }
 }

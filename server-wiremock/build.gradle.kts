@@ -10,15 +10,5 @@ dependencies {
 }
 
 application {
-    mainClassName = "dgroomes.ServerWireMockMain"
-}
-
-tasks {
-    named<CreateStartScripts>("startScripts") {
-        defaultJvmOpts = listOf("--enable-preview")
-    }
-
-    named<JavaExec>("run") {
-        jvmArgs = listOf("--enable-preview")
-    }
+    mainClass.set("dgroomes.ServerWireMockMain")
 }

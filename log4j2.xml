@@ -1,6 +1,6 @@
 <!-- This log4j2.xml configuration file is meant for configuring JMeter's logging. Ideally, this file should be named
 something more specific, like jmeter-log4j2.xml, but I couldn't figure out how to get JMeter to load a LOG4J2
-configuration file other than the the convential "log4j2.xml"
+configuration file other than the the conventional "log4j2.xml"
 
 I copied and pasted the contents of this file from https://jmeter.apache.org/usermanual/get-started.html#logging and
 added some tweaks.

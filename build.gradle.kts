@@ -21,20 +21,13 @@ subprojects {
     }
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_15
-        targetCompatibility = JavaVersion.VERSION_15
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(16))
+        }
     }
 
     tasks {
-        /**
-         * Enable Java language preview features (so we can use "records" and "text blocks")
-         */
-        withType(JavaCompile::class.java) {
-            options.compilerArgs.addAll(arrayOf("--enable-preview"))
-        }
-
-        withType(Test::class.java) {
-            jvmArgs = listOf("--enable-preview")
+        test {
             useJUnitPlatform()
         }
     }
