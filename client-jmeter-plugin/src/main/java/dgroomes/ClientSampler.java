@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 /**
- * Custom JMeter sample class to test the {@link dgroomes.Client} class.
+ * Custom JMeter sample class to test the {@link ClientV4} class.
  * <p>
  * For a reference example of a custom JMeter sample implementation, see https://github.com/apache/jmeter/blob/8fd448fe366b4e193c1e9a2d24eb974225135eec/src/protocol/java/src/main/java/org/apache/jmeter/protocol/java/test/SleepTest.java#L50
  */
@@ -19,7 +19,7 @@ public class ClientSampler extends AbstractJavaSamplerClient {
 
     private static final Logger log = LoggerFactory.getLogger(ClientSampler.class);
     public static final String SERVER_ORIGIN = "http://localhost:8070";
-    public static volatile Client CLIENT;
+    public static volatile ClientV4 CLIENT;
 
     /**
      * My perhaps naive attempt at initializing a static variable using double checked locking.
@@ -38,7 +38,7 @@ public class ClientSampler extends AbstractJavaSamplerClient {
             synchronized (ClientSampler.class) {
                 localRef = CLIENT;
                 if (localRef == null) {
-                    CLIENT = new Client(serverOrigin, pooling);
+                    CLIENT = new ClientV4(serverOrigin, pooling);
                 }
             }
         }

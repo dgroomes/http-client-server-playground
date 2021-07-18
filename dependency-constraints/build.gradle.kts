@@ -9,14 +9,16 @@ plugins {
 
 val slf4jVersion = "1.7.30" // releases: http://www.slf4j.org/news.html
 val wireMockVersion = "2.26.3" // releases: https://github.com/tomakehurst/wiremock/tags
-val httpComponentsVersion = "4.5.12" // releases: https://hc.apache.org/news.html
+val httpComponentsV4Version = "4.5.12" // releases: https://hc.apache.org/news.html
+val httpComponentsV5Version = "5.1" // releases: https://hc.apache.org/news.html
 
 dependencies {
     constraints {
         api("org.slf4j:slf4j-api:$slf4jVersion")
         api("org.slf4j:slf4j-simple:$slf4jVersion")
         api("org.slf4j:jcl-over-slf4j:$slf4jVersion")
-        api("org.apache.httpcomponents:httpclient:$httpComponentsVersion")
+        api("org.apache.httpcomponents:httpclient:$httpComponentsV4Version")
+        api("org.apache.httpcomponents.client5:httpclient5:$httpComponentsV5Version")
         api("com.github.tomakehurst:wiremock-jre8:$wireMockVersion")
     }
 }

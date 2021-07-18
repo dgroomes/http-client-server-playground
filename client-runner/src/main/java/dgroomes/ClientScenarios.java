@@ -31,18 +31,19 @@ public class ClientScenarios {
     public static void multipleRequests(Client client, int numberOfRequests) throws IOException {
         log.info("Executing {} requests", numberOfRequests);
         for (int i = 1; i <= numberOfRequests; i++) {
-            client.message();
+            var msg = client.message();
+            log.info("Got message: {}", msg);
         }
     }
 
     /**
      * Execute requests continuously
      *
-     * @param client     client
-     * @param fixedDelay fixed delay between requests
+     * @param client        client
+     * @param fixedDelay    fixed delay between requests
      * @param closeResponse if true, then close the response object
      */
-    public static void continuousRequests(Client client, Duration fixedDelay, boolean closeResponse) throws IOException, InterruptedException {
+    public static void continuousRequests(Client client, Duration fixedDelay, boolean closeResponse) {
         log.info("Continuously making requests to '/message' with a fixed delay of {} and with closeResponse: {}",
                 fixedDelay, closeResponse);
         int counter = 0;

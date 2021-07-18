@@ -1,32 +1,33 @@
 package dgroomes;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.util.EntityUtils;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.ParseException;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 /**
- * HTTP client backed by Apache HTTP Components <https://hc.apache.org/index.html>
+ * HTTP client backed by Apache HTTP Components <https://hc.apache.org/index.html> version 5.x
  */
-public class Client {
+public class ClientV5 implements Client {
 
-    private static final Logger log = LoggerFactory.getLogger(Client.class);
+    private static final Logger log = LoggerFactory.getLogger(ClientV5.class);
 
     private final CloseableHttpClient httpClient;
     private final String serverOrigin;
 
-    public Client(String serverOrigin) {
+    public ClientV5(String serverOrigin) {
         this(serverOrigin, false);
     }
 
-    public Client(String serverOrigin, boolean pooling) {
+    public ClientV5(String serverOrigin, boolean pooling) {
         var builder = HttpClients.custom();
         if (pooling) {
             PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -38,25 +39,7 @@ public class Client {
         this.serverOrigin = serverOrigin;
     }
 
-    /**
-     * Execute an HTTP GET request to the server at the "/message" path
-     *
-     * @param closeResponse if true, then close the HTTP response
-     * @return the "message". The body of the HTTP response.
-     */
-    public String message(boolean closeResponse) throws IOException {
-        if (closeResponse) {
-            return message();
-        } else {
-            return messageNoClose();
-        }
-    }
-
-    /**
-     * Execute an HTTP GET request to the server at the "/message" path
-     *
-     * @return the "message". The body of the HTTP response.
-     */
+    @Override
     public String message() throws IOException {
         HttpGet httpGet = new HttpGet(serverOrigin + "/message");
         /*
@@ -77,22 +60,22 @@ public class Client {
         }
     }
 
-    /**
-     * Execute an HTTP GET request to the server at the "/message" path but DO NOT close the HTTP response
-     *
-     * @return the "message". The body of the HTTP response.
-     */
-    public String messageNoClose() throws IOException {
+    @Override
+    public void messageNoClose() throws IOException {
         HttpGet httpGet = new HttpGet(serverOrigin + "/message");
         log.debug("Executing request to '/message' but NOT closing the HTTP response");
         var resp = httpClient.execute(httpGet);
-        return handleResponse(resp);
+        handleResponse(resp);
     }
 
     private static String handleResponse(CloseableHttpResponse resp) throws IOException {
-        log.debug("GET request to '/message' returned with status code: {}", resp.getStatusLine());
+        log.debug("GET request to '/message' returned with status code: {}", resp.getCode());
         HttpEntity entity = resp.getEntity();
         // Extract the body of the response. EntityUtils ensures the response entity is fully consumed.
-        return EntityUtils.toString(entity);
+        try {
+            return EntityUtils.toString(entity);
+        } catch (ParseException e) {
+            throw new IllegalStateException("Error reading contents of the HTTP response.", e);
+        }
     }
 }

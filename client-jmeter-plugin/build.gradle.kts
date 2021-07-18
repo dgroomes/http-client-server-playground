@@ -17,5 +17,5 @@ dependencies {
     compileOnly(group = "org.apache.jmeter", name = "ApacheJMeter_java", version = jmeterVersion)
     compileOnly(platform("org.apache.jmeter:ApacheJMeter_parent:$jmeterVersion"))
 
-    implementation(project(":client"))
+    implementation(project(":client-v4"))
 }
