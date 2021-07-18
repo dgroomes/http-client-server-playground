@@ -13,7 +13,6 @@ dependencies {
     dependencies. SLF4J is also included in JMeter.
     */
     compileOnly("org.apache.jmeter:ApacheJMeter_java")
-    compileOnly(platform("org.apache.jmeter:ApacheJMeter_parent"))
 
     implementation(project(":clients:client-httpcomponents-v4"))
     implementation(project(":clients:client-httpcomponents-v5"))
