@@ -39,6 +39,8 @@ public class ClientV5 implements Client {
         // Disable connection re-use. It seems like the connections are being terminated from the WireMock server (Jetty)
         // and I'm not sure why. Also, I used this SO question and answers to learn about connection re-use and workarounds
         // https://stackoverflow.com/questions/10558791/apache-httpclient-interim-error-nohttpresponseexception
+        // ... but I don't know why this config is not needed in HttpComponents 4.x. It works in the "client-v4" module.
+        // Is there a default behavior difference between 4.x and 5.x or a defect?
         builder.setConnectionReuseStrategy((request, response, context) -> false);
 
         this.httpClient = builder.build();
