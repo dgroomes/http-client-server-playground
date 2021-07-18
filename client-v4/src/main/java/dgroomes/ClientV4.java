@@ -3,6 +3,7 @@ package dgroomes;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.NoConnectionReuseStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -34,6 +35,12 @@ public class ClientV4 implements Client {
             cm.setDefaultMaxPerRoute(100);
             builder.setConnectionManager(cm);
         }
+
+        // Disable connection re-use. It seems like the connections are being terminated from the WireMock server (Jetty)
+        // and I'm not sure why. Also, I used this SO question and answers to learn about connection re-use and workarounds
+        // https://stackoverflow.com/questions/10558791/apache-httpclient-interim-error-nohttpresponseexception
+        builder.setConnectionReuseStrategy(new NoConnectionReuseStrategy());
+
         this.httpClient = builder.build();
         this.serverOrigin = serverOrigin;
     }
