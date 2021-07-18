@@ -12,5 +12,5 @@ to learn the 5.x line.
 
 General clean-ups, changes and things I wish to implement for this project:
 
-* For some reason the HTTP client is logging a an exception, although the request is still successful. See this log:
+* DONE (Disallowing connection re-use works around the problem. Although, why can't the connections be re-used?) For some reason the HTTP client is logging a an exception, although the request is still successful. See this log:
   > 22:55:36 [main] INFO org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec - Recoverable I/O exception (java.net.SocketException) caught when processing request to {}->http://localhost:8070
