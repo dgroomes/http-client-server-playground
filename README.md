@@ -26,8 +26,11 @@ Follow these instructions to run a scenario:
 1. Use Java 16
 1. Run a mock HTTP server:
    * `./gradlew server-wiremock:run`
-1. Run the client test suite:
-   * `./gradlew client-runner:run`
+1. Execute a scenario for one of the HTTP client libraries:
+   * `./gradlew client-runner:run --args 'httpcomponents-v4 single-request'`
+   * Alternatively, try a different scenario and different client library. For example, use the following command.
+   * `./gradlew client-runner:run --args 'httpcomponents-v5 multiple-requests'`
+  
 1. Observe the server statistics
    * Open <http://localhost:8070/stats/> in the browser
    * Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
