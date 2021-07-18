@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3-SNAPSHOT 740a206">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -32,6 +32,11 @@
               <elementProp name="Pooling" elementType="Argument">
                 <stringProp name="Argument.name">Pooling</stringProp>
                 <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="HttpClientLibrary" elementType="Argument">
+                <stringProp name="Argument.name">HttpClientLibrary</stringProp>
+                <stringProp name="Argument.value">httpcomponents-v5</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>

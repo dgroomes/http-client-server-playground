@@ -30,7 +30,6 @@ Follow these instructions to run a scenario:
    * `./gradlew client-runner:run --args 'httpcomponents-v4 single-request'`
    * Alternatively, try a different scenario and different client library. For example, use the following command.
    * `./gradlew client-runner:run --args 'httpcomponents-v5 multiple-requests'`
-  
 1. Observe the server statistics
    * Open <http://localhost:8070/stats/> in the browser
    * Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
@@ -41,13 +40,17 @@ Follow these instructions to run a scenario:
 This sub-project enables using JMeter to define and execute test plans against the Apache HTTP Components code. It 
 builds a JMeter plugin distribution.
 
-Instructions:
+Follow these instructions to run the JMeter load test:
 
-1. Run a mock HTTP server with `./gradlew server-wiremock:run`
-1. Build the JMeter plugin distribution with `./gradlew :client-jmeter-plugin:installDist`
-1. `./run-jmeter-load-test.sh`
-
-Edit the test plan with `./edit-jmeter-load-test.sh`
+1. Run a mock HTTP server:
+   * `./gradlew server-wiremock:run`
+1. Build the JMeter plugin distribution:
+   * `./gradlew :client-jmeter-plugin:installDist`
+1. Run the load test:
+   * `./run-jmeter-load-test.sh`
+1. Optionally, edit the test plan:
+   * `./edit-jmeter-load-test.sh`
+   * And then repeat the earlier step to run the test again, as desired.
 
 ## Wish List
 
@@ -63,7 +66,7 @@ General clean-ups, changes and things I wish to implement for this project:
   * IN PROGRESS Componentize/organize/modularize (whatever) the JMeter plugin modules. This is a bit tricky because there are
     limited options for getting JMeter plugin and JMeter utility/library code on the classpath. See the [options listed in
     the official docs](https://jmeter.apache.org/usermanual/get-started.html#classpath).
-  * Create a runner shell script, which let's you pick which client to use, and which "scenarios" and other options.
+  * SKIP? (The client-runner is ok as is. It already parameterizes the scenario/client types) Create a runner shell script, which let's you pick which client to use, and which "scenarios" and other options.
 
 ## Notes
 
