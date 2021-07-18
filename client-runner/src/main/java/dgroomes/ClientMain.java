@@ -21,31 +21,36 @@ public class ClientMain {
 
         var main = new ClientMain();
         try {
-            main.run(args);
+            var success = main.run(args);
+            if (!success) {
+                System.exit(1);
+            }
         } catch (Exception e) {
             log.error("Something went wrong while running the client scenario", e);
+            System.exit(1);
         }
     }
 
-    public void run(String[] args) throws IOException {
-        if (args.length != 2) {
-            log.error("Usage: ./gradlew run <client> <scenario>");
-            return;
+    public boolean run(String[] args) throws IOException {
+        if (args.length != 3) {
+            log.error("Usage: ./gradlew run <client> <scenario> <pooling>");
+            return false;
         }
 
         var clientArg = args[0].toLowerCase();
         var scenarioArg = args[1].toLowerCase();
+        var pooling = Boolean.parseBoolean(args[2].toLowerCase());
 
         Client client = switch (clientArg) {
-            case "httpcomponents-v4" -> new ClientV4(SERVER_ORIGIN);
-            case "httpcomponents-v5" -> new ClientV5(SERVER_ORIGIN);
+            case "httpcomponents-v4" -> new ClientV4(SERVER_ORIGIN, pooling);
+            case "httpcomponents-v5" -> new ClientV5(SERVER_ORIGIN, pooling);
             default -> {
                 log.error("Unrecognized <client> option: '{}'. See the source code for valid options.", clientArg);
                 yield null;
             }
         };
         if (client == null) {
-            return;
+            return false;
         }
 
         switch (scenarioArg) {
@@ -55,5 +60,7 @@ public class ClientMain {
             case "continuous-requests-without-close" -> ClientScenarios.continuousRequests(client, Duration.ofMillis(FIXED_DELAY_MILLIS), false);
             default -> log.error("Unrecognized <scenario> option: '{}'. See the source code for valid options.", scenarioArg);
         }
+
+        return true;
     }
 }

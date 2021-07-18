@@ -23,10 +23,6 @@ public class ClientV4 implements Client {
     private final CloseableHttpClient httpClient;
     private final String serverOrigin;
 
-    public ClientV4(String serverOrigin) {
-        this(serverOrigin, false);
-    }
-
     public ClientV4(String serverOrigin, boolean pooling) {
         var builder = HttpClients.custom();
         if (pooling) {

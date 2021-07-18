@@ -23,10 +23,6 @@ public class ClientV5 implements Client {
     private final CloseableHttpClient httpClient;
     private final String serverOrigin;
 
-    public ClientV5(String serverOrigin) {
-        this(serverOrigin, false);
-    }
-
     public ClientV5(String serverOrigin, boolean pooling) {
         var builder = HttpClients.custom();
         if (pooling) {
