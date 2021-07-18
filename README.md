@@ -15,11 +15,14 @@ This project includes example code snippets and a JMeter load test. It is broken
 Follow these instructions to run a scenario:
 
 1. Use Java 16
-1. Run a mock HTTP server with `./gradlew server-wiremock:run`
-1. Run the client test suite with `./gradlew client-runner:run`
-1. Observe the server statistics by going to <http://localhost:8070/stats/> in your browser
-  1. Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
-    and the amount of memory used by the server.
+1. Run a mock HTTP server:
+   * `./gradlew server-wiremock:run`
+1. Run the client test suite:
+   * `./gradlew client-runner:run`
+1. Observe the server statistics
+   * Open <http://localhost:8070/stats/> in the browser
+   * Statistics include things like the number of responses with 200/300/400/500 status codes, the number of connections,
+     and the amount of memory used by the server.
 
 ### `client-jmeter-plugin/`
 

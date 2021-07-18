@@ -13,7 +13,6 @@ dependencies {
         // Exclude commons-logging because we are using slf4j and slf4j-simple instead
         exclude("commons-logging", "commons-logging")
     }
-    api("org.slf4j:slf4j-api:${project.rootProject.extra["slf4jVersion"]}")
-    implementation("org.slf4j:slf4j-simple:${project.rootProject.extra["slf4jVersion"]}")
-    implementation("org.slf4j:jcl-over-slf4j:${project.rootProject.extra["slf4jVersion"]}")
+    implementation("org.slf4j:slf4j-simple")
+    implementation("org.slf4j:jcl-over-slf4j")
 }

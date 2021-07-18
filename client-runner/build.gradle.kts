@@ -10,4 +10,5 @@ application {
 
 dependencies {
     implementation(project(":client"))
+    implementation("org.slf4j:slf4j-api")
 }

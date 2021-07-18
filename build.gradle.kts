@@ -3,11 +3,8 @@ plugins {
     java
 }
 
-extra["slf4jVersion"] = "1.7.30"
-extra["wireMockVersion"] = "2.26.3"
-extra["junitJupiterVersion"] = "5.6.0"
-
-subprojects {
+val dependencyConstraints = project(":dependency-constraints")
+configure(allprojects.minus(dependencyConstraints)) {
     // Do we really need to declare the java plugin here *and* at the top of this file?
     apply(plugin = "java")
 
@@ -16,19 +13,12 @@ subprojects {
     }
 
     dependencies {
-        testImplementation("org.junit.jupiter:junit-jupiter-api:${project.rootProject.extra["junitJupiterVersion"]}")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.rootProject.extra["junitJupiterVersion"]}")
+        "implementation"(platform(dependencyConstraints))
     }
 
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(16))
-        }
-    }
-
-    tasks {
-        test {
-            useJUnitPlatform()
         }
     }
 }

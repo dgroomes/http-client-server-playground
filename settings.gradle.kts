@@ -1,6 +1,7 @@
 rootProject.name = "httpcomponents-playground"
 
-include("client",
+include("dependency-constraints",
+        "client",
         "client-runner",
         "client-jmeter-plugin",
         "server-wiremock")
