@@ -17,7 +17,11 @@ into a collection of sub-projects:
     * A usage example of [Apache HTTP Components](https://hc.apache.org/index.html) version 5.x.
 * `client-jmeter-plugin/`
 * `client-runner/`
-* `server-wiremock/`
+* `servers/`
+    * `server-wiremock/`
+      * A WireMock mock HTTP server. 
+    * `server-spring/`
+      * A simple Spring Boot app that serves as a mock HTTP server.
 
 ## Instructions
 
@@ -25,7 +29,9 @@ Follow these instructions to run a scenario:
 
 1. Use Java 16
 1. Run a mock HTTP server:
-   * `./gradlew server-wiremock:run`
+   * `./gradlew servers:server-wiremock:run`
+   * Alternatively, run a mock HTTP server using Spring Boot with the following command.
+   * `./gradlew servers:server-spring:run`
 1. Execute a scenario for one of the HTTP client libraries:
    * `./gradlew client-runner:run --args 'httpcomponents-v4 single-request false'`
    * Alternatively, try a different scenario and different client library. For example, use the following command.
@@ -67,6 +73,7 @@ General clean-ups, changes and things I wish to implement for this project:
     limited options for getting JMeter plugin and JMeter utility/library code on the classpath. See the [options listed in
     the official docs](https://jmeter.apache.org/usermanual/get-started.html#classpath).
   * SKIP? (The client-runner is ok as is. It already parameterizes the scenario/client types) Create a runner shell script, which let's you pick which client to use, and which "scenarios" and other options.
+  * DONE add a Spring Boot based server.
 
 ## Notes
 

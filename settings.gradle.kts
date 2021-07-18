@@ -6,4 +6,5 @@ include("dependency-constraints",
         "clients:client-httpcomponents-v5",
         "client-runner",
         "client-jmeter-plugin",
-        "server-wiremock")
+        "servers:server-wiremock",
+        "servers:server-spring")
