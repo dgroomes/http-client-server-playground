@@ -1,11 +1,20 @@
 # httpcomponents-playground
 
+NOTE: This is currently being re-tooled as an "http-client-server-playground". See the Wish List section. This is a work-in-progress.
+
 📚 Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>.
 
----
+## Structure
 
-This project includes example code snippets and a JMeter load test. It is broken down into a collection of sub-projects:
-* `client/`
+This project includes simple usage examples of some Java-based HTTP client libraries, and a JMeter load test. It is broken down
+into a collection of sub-projects:
+
+* `clients/`
+  * A collection of simple usage examples of some Java-based HTTP client libraries 
+  * `client-httpcomponents-v4`
+    * A usage example of [Apache HTTP Components](https://hc.apache.org/index.html) version 4.x.
+  * `client-httpcomponents-v5` 
+    * A usage example of [Apache HTTP Components](https://hc.apache.org/index.html) version 5.x.
 * `client-jmeter-plugin/`
 * `client-runner/`
 * `server-wiremock/`
@@ -37,10 +46,19 @@ Instructions:
 
 Edit the test plan with `./edit-jmeter-load-test.sh`
 
-### TODO
+## Wish List
 
-* How can we get the client to fail? How do we leak connections?
-  
+General clean-ups, changes and things I wish to implement for this project:
+
+* How can we get the Apache HttpComponents client to fail? How do we leak connections? I am curious to force a leak and
+  see how the system (client/server) behaves because connection leaks are a common thing in the real world and I want to
+  understand it better.
+* IN PROGRESS Re-tool this repo as a "http-client-server-playground" where multiple kinds of clients (Apache HttpComponents, OkHttp, Java
+  standard library's HttpClient, others?) can be tested against multiple kinds of servers (Jetty, Tomcat, Netty, maybe
+  Undertow).
+  * DONE Organize the clients
+  * Create a runner shell script, which let's you pick which client to use, and which "scenarios" and other options.
+
 ### Notes
 
 * Check open file descriptors by port `lsof -p 123 | wc -l` 

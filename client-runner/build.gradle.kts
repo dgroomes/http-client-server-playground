@@ -9,7 +9,7 @@ application {
 }
 
 dependencies {
-    implementation(project(":client-v4"))
-    implementation(project(":client-v5"))
+    implementation(project(":clients:client-httpcomponents-v4"))
+    implementation(project(":clients:client-httpcomponents-v5"))
     implementation("org.slf4j:slf4j-api")
 }

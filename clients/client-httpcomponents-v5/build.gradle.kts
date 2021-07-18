@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    api(project(":client-api"))
+    api(project(":clients:client-api"))
     implementation("org.apache.httpcomponents.client5:httpclient5") {
         // Exclude commons-logging because we are using slf4j and slf4j-simple instead
         exclude("commons-logging", "commons-logging")

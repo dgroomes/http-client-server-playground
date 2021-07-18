@@ -9,7 +9,7 @@ plugins {
 val httpComponentsVersion = "4.5.12"
 
 dependencies {
-    api(project(":client-api"))
+    api(project(":clients:client-api"))
     implementation("org.apache.httpcomponents:httpclient:$httpComponentsVersion") {
         // Exclude commons-logging because we are using slf4j and slf4j-simple instead
         exclude("commons-logging", "commons-logging")

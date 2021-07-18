@@ -1,9 +1,9 @@
 rootProject.name = "httpcomponents-playground"
 
 include("dependency-constraints",
-        "client-api",
-        "client-v4",
-        "client-v5",
+        "clients:client-api",
+        "clients:client-httpcomponents-v4",
+        "clients:client-httpcomponents-v5",
         "client-runner",
         "client-jmeter-plugin",
         "server-wiremock")
