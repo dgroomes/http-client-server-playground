@@ -8,8 +8,8 @@ plugins {
 }
 
 val slf4jVersion = "1.7.30" // releases: http://www.slf4j.org/news.html
-val wireMockVersion = "2.26.3" // releases: https://github.com/tomakehurst/wiremock/tags
-val httpComponentsV4Version = "4.5.12" // releases: https://hc.apache.org/news.html
+val wireMockVersion = "2.29.1" // releases: https://github.com/tomakehurst/wiremock/tags
+val httpComponentsV4Version = "4.5.13" // releases: https://hc.apache.org/news.html
 val httpComponentsV5Version = "5.1" // releases: https://hc.apache.org/news.html
 
 dependencies {
