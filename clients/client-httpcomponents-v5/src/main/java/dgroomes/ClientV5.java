@@ -30,12 +30,12 @@ public class ClientV5 implements Client {
             cm.setMaxTotal(400);
             cm.setDefaultMaxPerRoute(100);
             builder.setConnectionManager(cm);
+        } else {
+            // Disable connection re-use. It seems like the connections are being terminated from the WireMock server (Jetty)
+            // and I'm not sure why. Also, I used this SO question and answers to learn about connection re-use and workarounds
+            // https://stackoverflow.com/questions/10558791/apache-httpclient-interim-error-nohttpresponseexception
+            builder.setConnectionReuseStrategy((request, response, context) -> false);
         }
-
-        // Disable connection re-use. It seems like the connections are being terminated from the WireMock server (Jetty)
-        // and I'm not sure why. Also, I used this SO question and answers to learn about connection re-use and workarounds
-        // https://stackoverflow.com/questions/10558791/apache-httpclient-interim-error-nohttpresponseexception
-        builder.setConnectionReuseStrategy((request, response, context) -> false);
 
         this.httpClient = builder.build();
         this.serverOrigin = serverOrigin;
