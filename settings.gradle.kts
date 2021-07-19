@@ -1,4 +1,4 @@
-rootProject.name = "httpcomponents-playground"
+rootProject.name = "http-client-server-playground"
 
 include("dependency-constraints",
         "clients:client-api",

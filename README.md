@@ -1,4 +1,4 @@
-# httpcomponents-playground
+# http-client-server-playground
 
 NOTE: This is currently being re-tooled as an "http-client-server-playground". See the Wish List section. This is a work-in-progress.
 
