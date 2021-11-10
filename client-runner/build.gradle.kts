@@ -1,4 +1,5 @@
 plugins {
+    id("common")
     // Apply the application plugin to add support for building a CLI application.
     application
 }

@@ -1,7 +1,7 @@
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 
 plugins {
-    java
+    id("common")
     id("org.springframework.boot") version "2.5.2" apply false // releases: https://spring.io/projects/spring-boot#learn
     application
 }
@@ -9,7 +9,6 @@ plugins {
 apply(plugin = "io.spring.dependency-management")
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 

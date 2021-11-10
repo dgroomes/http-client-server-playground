@@ -26,6 +26,11 @@ assertJavaVersion16() {
 
 assertJavaVersion16
 
+if [[ ! -d client-jmeter-plugin/build/install/client-jmeter-plugin/client-jmeter-plugin.jar ]]; then
+  echo >&2 "The JMeter plugin (the 'client-jmeter-plugin' project) needs to be built before running the JMeter test. Please see the README for instructions."
+  exit 1
+fi
+
 if [[ -f log.jtl ]]; then
   rm log.jtl
 fi
