@@ -25,9 +25,14 @@ public class ServerWireMockMain {
                 .port(PORT)
                 /*
                  With GZIP compression enabled, the Apache HTTP Component's "wire" logging prints the gzipped contents
-                 of the HTTP request/response bodies. This is hardly useful. So, disable GZIP compression.
+                 of the HTTP request/response bodies. This makes observability harder and a "playground" repo is about learning.
+                 So, disable GZIP compression.
                  */
                 .gzipDisabled(true);
+                // For some reason, async doesn't work when the statistics handler is enabled. So, this must stay commented
+                // out. I'd really like to figure out why this happens.
+                //.asynchronousResponseEnabled(true)
+                //.asynchronousResponseThreads(1000);
 
         var scenario = getScenario();
         scenario.configureOptions(options);

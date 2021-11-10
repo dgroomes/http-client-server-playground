@@ -31,9 +31,11 @@ public class HappyPathScenario implements ServerScenario {
     public void configureViaApi(WireMock client) {
         log.debug("Configuring the WireMock server via the API for the 'happy path' scenario");
         var request = WireMock.get("/message");
-        var response = ResponseDefinitionBuilder.responseDefinition().withBody("""
-                hello world!
-                """)
+        var response = ResponseDefinitionBuilder.responseDefinition()
+                .withHeader("Content-Type", "text/plain")
+                .withBody("""
+                        hello world!
+                        """)
                 .withFixedDelay(FIXED_DELAY_MILLISECONDS);
         WireMockUtil.register(client, request.willReturn(response));
     }

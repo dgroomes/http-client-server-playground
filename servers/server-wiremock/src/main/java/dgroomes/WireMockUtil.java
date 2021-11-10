@@ -42,6 +42,10 @@ public class WireMockUtil {
      * 1. Enables Jetty statistics, like number of requests and number of connections, to be available at the URL
      * "/stats/"
      * 2. Enables graceful shutdown
+     * <p>
+     * WARNING: Unfortunately, when the statistics is enabled then asynchronous responses cannot also be enabled. I don't
+     * know why. Either I'm configuring statistics incorrectly or Jetty's "statistics servlet" isn't really meant to be
+     * used.
      */
     public static void configureStatistics(WireMockConfiguration options) {
         // A stop timeout and a StatisticsHandler are required to enable Jetty to shutdown gracefully.
@@ -69,22 +73,30 @@ public class WireMockUtil {
                     @Override
                     protected HandlerCollection createHandler(Options options, AdminRequestHandler adminRequestHandler, StubRequestHandler stubRequestHandler) {
                         var handlers = super.createHandler(options, adminRequestHandler, stubRequestHandler);
-                        var statisticsHandler = new StatisticsHandler();
-                        statisticsHandler.setHandler(handlers);
-                        var contexts = new ContextHandlerCollection();
-                        ServletContextHandler statsContext = new ServletContextHandler(contexts, "/stats");
-                        statsContext.addServlet(new ServletHolder(new StatisticsServlet()), "/");
-                        statsContext.setSessionHandler(new SessionHandler());
-                        Handler[] existing = handlers.getChildHandlers();
-                        Handler[] children = new Handler[existing.length + 1];
-                        children[0] = contexts;
-                        System.arraycopy(existing, 0, children, 1, existing.length);
-                        handlers.setHandlers(children);
+
+                        { // Add the "/stats" endpoint
+                            var contexts = new ContextHandlerCollection();
+                            ServletContextHandler statsContext = new ServletContextHandler(contexts, "/stats");
+                            statsContext.addServlet(new ServletHolder(new StatisticsServlet()), "/");
+                            statsContext.setSessionHandler(new SessionHandler());
+                            Handler[] existing = handlers.getChildHandlers();
+                            Handler[] children = new Handler[existing.length + 1];
+                            children[0] = contexts;
+                            System.arraycopy(existing, 0, children, 1, existing.length);
+                            handlers.setHandlers(children);
+                        }
+
                         // Unfortunately, the statisticsHandler needs to be wrapped in a HandlerCollection because the
                         // super method must return the type "HandlerCollection", but really the method can afford to
                         // return the more generic type "Handler". So we must accommodate the unnecessarily specific
                         // type signature.
-                        return new HandlerCollection(statisticsHandler);
+                        HandlerCollection newHandlerCollection;
+                        {
+                            var statisticsHandler = new StatisticsHandler();
+                            statisticsHandler.setHandler(handlers);
+                            newHandlerCollection = new HandlerCollection(statisticsHandler);
+                        }
+                        return newHandlerCollection;
                     }
 
                     /**
