@@ -7,15 +7,15 @@ plugins {
     `java-platform`
 }
 
-val slf4jVersion = "1.7.30" // Make sure to use the version that is bundled with JMeter!
+val slf4jVersion = "1.7.30" // Make sure to use the version of SLF4J that is bundled with JMeter!
 val jmeterVersion =
-    "5.4.1" // releases: https://jmeter.apache.org/changes_history.html AND https://github.com/apache/jmeter/releases
-val wireMockVersion = "2.29.1" // releases: https://github.com/tomakehurst/wiremock/tags
+    "5.4.1" // JMeter releases: https://jmeter.apache.org/changes_history.html AND https://github.com/apache/jmeter/tags
+val wireMockVersion = "2.31.0" // WireMock releases: https://github.com/tomakehurst/wiremock/tags
 val httpComponentsClientV4Version =
-    "4.5.12" // Make sure to use the version that is bundled with JMeter! https://github.com/apache/jmeter/blob/rel/v5.4.1/gradle.properties#L91
+    "4.5.12" // Make sure to use the version of HttpComponents v4 that is bundled with JMeter! https://github.com/apache/jmeter/blob/rel/v5.4.1/gradle.properties#L91
 val httpComponentsCoreV4Version =
-    "4.4.13" // Make sure to use the version that is bundled with JMeter! https://github.com/apache/jmeter/blob/rel/v5.4.1/gradle.properties#L93
-val httpComponentsV5Version = "5.1" // releases: https://hc.apache.org/news.html
+    "4.4.13" // Make sure to use the version of HttpComponents v4 that is bundled with JMeter! https://github.com/apache/jmeter/blob/rel/v5.4.1/gradle.properties#L93
+val httpComponentsV5Version = "5.1.1" // HttpComponents v5 releases: https://hc.apache.org/news.html
 
 dependencies {
 
