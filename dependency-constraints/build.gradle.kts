@@ -1,59 +1,19 @@
 plugins {
-    /*
-     * Using the Gradle "platform" feature to declare dependency version constraints that will be used by the other sub-projects
-     * so that we only ever have to declare version information in one place instead of across all sub-projects. See the
-     * Gradle docs about "platform": https://docs.gradle.org/current/userguide/platforms.html
-     */
     `java-platform`
 }
 
-val slf4jVersion = "1.7.30" // Make sure to use the version of SLF4J that is bundled with JMeter!
-val jmeterVersion =
-    "5.4.1" // JMeter releases: https://jmeter.apache.org/changes_history.html AND https://github.com/apache/jmeter/tags
-val wireMockVersion = "2.31.0" // WireMock releases: https://github.com/tomakehurst/wiremock/tags
-val httpComponentsClientV4Version =
-    "4.5.12" // Make sure to use the version of HttpComponents v4 that is bundled with JMeter! https://github.com/apache/jmeter/blob/rel/v5.4.1/gradle.properties#L91
-val httpComponentsCoreV4Version =
-    "4.4.13" // Make sure to use the version of HttpComponents v4 that is bundled with JMeter! https://github.com/apache/jmeter/blob/rel/v5.4.1/gradle.properties#L93
+val slf4jVersion = "1.7.32" // SLF4J releases: http://www.slf4j.org/news.html
 val httpComponentsV5Version = "5.1.1" // HttpComponents v5 releases: https://hc.apache.org/news.html
+val wireMockVersion = "2.31.0" // WireMock releases: https://github.com/tomakehurst/wiremock/tags
+val http4kVersion = "4.16.3.0" // http4K releases: https://github.com/http4k/http4k/releases
 
 dependencies {
-
     constraints {
-        api("org.apache.jmeter:ApacheJMeter_java:$jmeterVersion")
-        api("org.apache.httpcomponents.client5:httpclient5:$httpComponentsV5Version")
+        api("org.slf4j:slf4j-api:$slf4jVersion")
+        api("org.slf4j:slf4j-simple:$slf4jVersion")
+        api("org.http4k:http4k-core:version:$http4kVersion")
+        api("org.http4k:http4k-server-jetty:$http4kVersion")
         api("com.github.tomakehurst:wiremock-jre8:$wireMockVersion")
-    }
-
-    // Declare strict constraints over the dependencies bundled into JMeter itself. These are hard and fast versions. There
-    // is no way to unbundle these dependencies from JMeter and bundle in different versions (well technically you could
-    // figure something out but that's not easy and would be tenuous). In other words, these dependencies can be used
-    // by our own JMeter plugins but these exact versions must be used.
-    constraints {
-        api("org.slf4j:slf4j-api") {
-            version {
-                strictly(slf4jVersion)
-            }
-        }
-        api("org.slf4j:slf4j-simple") {
-            version {
-                strictly(slf4jVersion)
-            }
-        }
-        api("org.slf4j:jcl-over-slf4j") {
-            version {
-                strictly(slf4jVersion)
-            }
-        }
-        api("org.apache.httpcomponents:httpclient") {
-            version {
-                strictly(httpComponentsClientV4Version)
-            }
-        }
-        api("org.apache.httpcomponents:httpcore") {
-            version {
-                strictly(httpComponentsCoreV4Version)
-            }
-        }
+        api("org.apache.httpcomponents.client5:httpclient5:$httpComponentsV5Version")
     }
 }

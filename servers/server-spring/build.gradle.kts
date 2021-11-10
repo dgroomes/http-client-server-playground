@@ -8,10 +8,6 @@ plugins {
 
 apply(plugin = "io.spring.dependency-management")
 
-repositories {
-    mavenCentral()
-}
-
 /*
 Use Spring Boot dependency management without applying the Spring Boot Gradle plugin.
 See https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#managing-dependencies-dependency-management-plugin-using-in-isolation

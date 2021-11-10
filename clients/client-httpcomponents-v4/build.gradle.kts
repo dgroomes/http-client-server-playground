@@ -1,5 +1,6 @@
 plugins {
     id("common")
+    id("jmeter-constraints")
     /*
     Apply the java-library-distribution plugin to add support for distributing the source .jar and library .jar files
     so they can be used by JMeter. See the plugin docs at https://docs.gradle.org/current/userguide/java_library_distribution_plugin.html
@@ -7,11 +8,9 @@ plugins {
     `java-library-distribution`
 }
 
-val httpComponentsVersion = "4.5.12"
-
 dependencies {
     api(project(":clients:client-api"))
-    implementation("org.apache.httpcomponents:httpclient:$httpComponentsVersion") {
+    implementation("org.apache.httpcomponents:httpclient") {
         // Exclude commons-logging because we are using slf4j and slf4j-simple instead
         exclude("commons-logging", "commons-logging")
     }

@@ -22,6 +22,8 @@ into a collection of sub-projects:
       * A WireMock mock HTTP server. 
     * `server-spring/`
       * A simple Spring Boot app that serves as a mock HTTP server.
+    * NOT YET IMPLEMENTED `server-netty`
+      * A simple Netty server wrapped via the convenient [http4k toolkit](https://github.com/http4k/http4k). 
 
 ## Instructions
 
@@ -62,6 +64,7 @@ Follow these instructions to run the JMeter load test:
 
 General clean-ups, changes and things I wish to implement for this project:
 
+* Add a Netty server example
 * How can we get the Apache HttpComponents client to fail? How do we leak connections? I am curious to force a leak and
   see how the system (client/server) behaves because connection leaks are a common thing in the real world and I want to
   understand it better.

@@ -1,10 +1,7 @@
 plugins {
     id("common")
+    id("jmeter-constraints")
     `java-library-distribution`
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
