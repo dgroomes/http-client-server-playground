@@ -9,5 +9,6 @@ include(
     "client-runner",
     "client-jmeter-plugin",
     "servers:server-wiremock",
-    "servers:server-spring"
+    "servers:server-spring",
+    "servers:server-netty",
 )

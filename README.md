@@ -22,7 +22,7 @@ into a collection of sub-projects:
       * A WireMock mock HTTP server. 
     * `server-spring/`
       * A simple Spring Boot app that serves as a mock HTTP server.
-    * NOT YET IMPLEMENTED `server-netty`
+    * `server-netty`
       * A simple Netty server wrapped via the convenient [http4k toolkit](https://github.com/http4k/http4k). 
 
 ## Instructions
@@ -32,8 +32,9 @@ Follow these instructions to run a scenario:
 1. Use Java 16
 1. Run a mock HTTP server:
    * `./gradlew servers:server-wiremock:run`
-   * Alternatively, run a mock HTTP server using Spring Boot with the following command.
+   * Alternatively, run a mock HTTP server with a different server with one of the following commands.
    * `./gradlew servers:server-spring:run`
+   * `./gradlew servers:server-netty:run`
 1. Execute a scenario for one of the HTTP client libraries:
    * `./gradlew client-runner:run --args 'httpcomponents-v4 single-request false'`
    * Alternatively, try a different scenario and different client library. For example, use the following command.
@@ -64,7 +65,7 @@ Follow these instructions to run the JMeter load test:
 
 General clean-ups, changes and things I wish to implement for this project:
 
-* Add a Netty server example
+* DONE Add a Netty server example
 * How can we get the Apache HttpComponents client to fail? How do we leak connections? I am curious to force a leak and
   see how the system (client/server) behaves because connection leaks are a common thing in the real world and I want to
   understand it better.
