@@ -65,6 +65,7 @@ Follow these instructions to run the JMeter load test:
 
 General clean-ups, changes and things I wish to implement for this project:
 
+* DONE Add a Jetty server example
 * DONE Add a Netty server example
 * How can we get the Apache HttpComponents client to fail? How do we leak connections? I am curious to force a leak and
   see how the system (client/server) behaves because connection leaks are a common thing in the real world and I want to

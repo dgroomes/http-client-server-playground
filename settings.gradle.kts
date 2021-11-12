@@ -11,4 +11,5 @@ include(
     "servers:server-wiremock",
     "servers:server-spring",
     "servers:server-netty",
+    "servers:server-jetty",
 )
