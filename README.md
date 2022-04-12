@@ -2,7 +2,7 @@
 
 NOTE: This is currently being re-tooled as an "http-client-server-playground". See the Wish List section. This is a work-in-progress.
 
-📚 Learning and exploring Apache HTTP Components <https://hc.apache.org/index.html>.
+📚 Learning and exploring various HTTP client and servers in the JVM eco-system: Netty, Jetty, Apache HTTP Components.
 
 ## Structure
 
