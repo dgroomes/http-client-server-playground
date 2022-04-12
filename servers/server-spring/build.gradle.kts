@@ -2,7 +2,7 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 
 plugins {
     id("common")
-    id("org.springframework.boot") version "2.5.2" apply false // releases: https://spring.io/projects/spring-boot#learn
+    id("org.springframework.boot") version "2.6.6" apply false // releases: https://spring.io/projects/spring-boot#learn
     application
 }
 

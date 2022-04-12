@@ -35,6 +35,7 @@ Follow these instructions to run a scenario:
    * Alternatively, run a mock HTTP server with a different server with one of the following commands.
    * `./gradlew servers:server-spring:run`
    * `./gradlew servers:server-netty:run`
+   * `./gradlew servers:server-jetty:run`
 1. Execute a scenario for one of the HTTP client libraries:
    * `./gradlew client-runner:run --args 'httpcomponents-v4 single-request false'`
    * Alternatively, try a different scenario and different client library. For example, use the following command.
