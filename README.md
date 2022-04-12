@@ -52,7 +52,7 @@ builds a JMeter plugin distribution.
 Follow these instructions to run the JMeter load test:
 
 1. Run a mock HTTP server:
-   * `./gradlew server-wiremock:run`
+   * `./gradlew servers:server-wiremock:run`
 1. Build the JMeter plugin distribution:
    * `./gradlew :client-jmeter-plugin:installDist`
 1. Run the load test:
@@ -79,6 +79,11 @@ General clean-ups, changes and things I wish to implement for this project:
     the official docs](https://jmeter.apache.org/usermanual/get-started.html#classpath).
   * SKIP? (The client-runner is ok as is. It already parameterizes the scenario/client types) Create a runner shell script, which let's you pick which client to use, and which "scenarios" and other options.
   * DONE add a Spring Boot based server.
+* Upgrade to Java 17 but BE WARNED. I've tried this twice (in April 2022 and sometime earlier) and I think JMeter doesn't
+  work on Java 17. I get this error when I run the JMeter simulation:
+  ```text
+  Error generating the report: org.apache.jmeter.report.dashboard.GenerationException: Error while processing samples: Consumer failed with message :Consumer failed with message :Consumer failed with message :Consumer failed with message :Begin size 1 is not equal to fixed size 5
+  ```
 
 ## Notes
 

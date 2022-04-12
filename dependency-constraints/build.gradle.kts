@@ -2,10 +2,10 @@ plugins {
     `java-platform`
 }
 
-val slf4jVersion = "1.7.32" // SLF4J releases: http://www.slf4j.org/news.html
-val httpComponentsV5Version = "5.1.1" // HttpComponents v5 releases: https://hc.apache.org/news.html
-val wireMockVersion = "2.31.0" // WireMock releases: https://github.com/tomakehurst/wiremock/tags
-val http4kVersion = "4.16.3.0" // http4K releases: https://github.com/http4k/http4k/releases
+val slf4jVersion = "1.7.36" // SLF4J releases: http://www.slf4j.org/news.html
+val httpComponentsV5Version = "5.1.3" // HttpComponents v5 releases: https://hc.apache.org/news.html
+val wireMockVersion = "2.33.1" // WireMock releases: https://github.com/tomakehurst/wiremock/tags
+val http4kVersion = "4.25.8.0" // http4K releases: https://github.com/http4k/http4k/releases
 
 dependencies {
     constraints {

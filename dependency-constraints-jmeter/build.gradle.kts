@@ -10,10 +10,10 @@ plugins {
 }
 
 // JMeter releases: https://jmeter.apache.org/changes_history.html AND https://github.com/apache/jmeter/tags
-val jmeterVersion = "5.4.1"
-val slf4jVersion = "1.7.30"
-val httpComponentsClientV4Version = "4.5.12" //  https://github.com/apache/jmeter/blob/rel/v5.4.1/gradle.properties#L91
-val httpComponentsCoreV4Version = "4.4.13" // https://github.com/apache/jmeter/blob/rel/v5.4.1/gradle.properties#L93
+val jmeterVersion = "5.4.3"
+val slf4jVersion = "1.7.30" // https://github.com/apache/jmeter/blob/rel/v5.4.3/gradle.properties#L122
+val httpComponentsClientV4Version = "4.5.12" //  https://github.com/apache/jmeter/blob/rel/v5.4.3/gradle.properties#L91
+val httpComponentsCoreV4Version = "4.4.13" // https://github.com/apache/jmeter/blob/rel/v5.4.3/gradle.properties#L93
 
 dependencies {
 
