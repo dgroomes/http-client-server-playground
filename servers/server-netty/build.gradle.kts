@@ -7,7 +7,6 @@ plugins {
 dependencies {
     implementation("org.slf4j:slf4j-api")
     implementation("org.slf4j:slf4j-simple")
-    implementation("org.http4k:http4k-core:version")
     implementation("org.http4k:http4k-server-netty")
 }
 

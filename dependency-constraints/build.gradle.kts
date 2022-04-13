@@ -11,7 +11,6 @@ dependencies {
     constraints {
         api("org.slf4j:slf4j-api:$slf4jVersion")
         api("org.slf4j:slf4j-simple:$slf4jVersion")
-        api("org.http4k:http4k-core:version:$http4kVersion")
         api("org.http4k:http4k-server-netty:$http4kVersion")
         api("org.http4k:http4k-server-jetty:$http4kVersion")
         api("com.github.tomakehurst:wiremock-jre8:$wireMockVersion")

@@ -12,7 +12,6 @@ val slf4jVersion = "2.0.0-alpha6"
 dependencies {
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("org.slf4j:slf4j-simple:$slf4jVersion")
-    implementation("org.http4k:http4k-core:version")
     implementation("org.http4k:http4k-server-jetty")
 }
 
