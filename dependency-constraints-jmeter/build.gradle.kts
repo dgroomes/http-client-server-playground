@@ -1,5 +1,5 @@
 // This is a Gradle "platform" module that declares dependency constraints. In particular, it defines strict version
-// constraints that replicate the exact versions of libaries found in JMeter. When developing a JMeter plugin it's
+// constraints that replicate the exact versions of libraries found in JMeter. When developing a JMeter plugin it's
 // important to use the exact versions of libraries already used in JMeter otherwise there might be incompatibility
 // issues.
 //
@@ -10,10 +10,10 @@ plugins {
 }
 
 // JMeter releases: https://jmeter.apache.org/changes_history.html AND https://github.com/apache/jmeter/tags
-val jmeterVersion = "5.4.3"
-val slf4jVersion = "1.7.30" // https://github.com/apache/jmeter/blob/rel/v5.4.3/gradle.properties#L122
-val httpComponentsClientV4Version = "4.5.12" //  https://github.com/apache/jmeter/blob/rel/v5.4.3/gradle.properties#L91
-val httpComponentsCoreV4Version = "4.4.13" // https://github.com/apache/jmeter/blob/rel/v5.4.3/gradle.properties#L93
+val jmeterVersion = "5.6.1"
+val slf4jVersion = "1.7.36" // https://github.com/apache/jmeter/blob/9f803e313abfef04516bd7b4c1e50f85b619f4f3/src/bom-thirdparty/build.gradle.kts#L139
+val httpComponentsClientV4Version = "4.5.14" //  https://github.com/apache/jmeter/blob/9f803e313abfef04516bd7b4c1e50f85b619f4f3/src/bom-thirdparty/build.gradle.kts#L106
+val httpComponentsCoreV4Version = "4.4.16" // https://github.com/apache/jmeter/blob/9f803e313abfef04516bd7b4c1e50f85b619f4f3/src/bom-thirdparty/build.gradle.kts#L108
 
 dependencies {
 

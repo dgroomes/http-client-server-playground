@@ -1,6 +1,6 @@
 plugins {
     id("common")
-    kotlin("jvm") version "1.6.10" // Kotlin releases: https://kotlinlang.org/docs/releases.html#release-details
+    kotlin("jvm") version "1.9.21" // Kotlin releases: https://kotlinlang.org/docs/releases.html#release-details
     application
 }
 

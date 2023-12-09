@@ -1,6 +1,6 @@
 # client-v5
 
-This is a copy of the `client/` sub-project but using the 5.x line of Apache HttpComponents instead of 4.x.
+This is a copy of the `client/` subproject but using the 5.x line of Apache HttpComponents instead of 4.x.
 
 ## Description
 

@@ -3,9 +3,9 @@ plugins {
 }
 
 val slf4jVersion = "1.7.36" // SLF4J releases: http://www.slf4j.org/news.html
-val httpComponentsV5Version = "5.1.3" // HttpComponents v5 releases: https://hc.apache.org/news.html
-val wireMockVersion = "2.33.1" // WireMock releases: https://github.com/tomakehurst/wiremock/tags
-val http4kVersion = "4.25.8.0" // http4K releases: https://github.com/http4k/http4k/releases
+val httpComponentsClientV5Version = "5.1.4" // HttpComponents v5 releases: https://hc.apache.org/news.html
+val wireMockVersion = "2.35.1" // WireMock releases: https://github.com/tomakehurst/wiremock/tags
+val http4kVersion = "4.48.0.0" // http4K releases: https://github.com/http4k/http4k/releases
 
 dependencies {
     constraints {
@@ -14,6 +14,6 @@ dependencies {
         api("org.http4k:http4k-server-netty:$http4kVersion")
         api("org.http4k:http4k-server-jetty:$http4kVersion")
         api("com.github.tomakehurst:wiremock-jre8:$wireMockVersion")
-        api("org.apache.httpcomponents.client5:httpclient5:$httpComponentsV5Version")
+        api("org.apache.httpcomponents.client5:httpclient5:$httpComponentsClientV5Version")
     }
 }
