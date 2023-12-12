@@ -10,6 +10,7 @@ include(
     "client-jmeter-plugin",
     "servers:server-wiremock",
     "servers:server-spring",
+    "servers:server-micronaut",
     "servers:server-netty",
     "servers:server-jetty",
 )

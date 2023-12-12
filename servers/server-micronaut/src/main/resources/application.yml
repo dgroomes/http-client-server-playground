@@ -1,0 +1,5 @@
+micronaut:
+  application:
+    name: server-micronaut
+  server:
+    port: 8070

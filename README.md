@@ -46,6 +46,9 @@ Follow these instructions to run a scenario:
    * ```shell
      ./gradlew servers:server-jetty:run
      ```
+   * ```shell
+     ./gradlew servers:server-micronaut:run
+     ```
 3. Execute a scenario for one of the HTTP client libraries:
    * ```shell
      ./gradlew client-runner:run --args 'httpcomponents-v4 single-request false'
