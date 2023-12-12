@@ -67,19 +67,21 @@ builds a JMeter plugin distribution.
 
 Follow these instructions to run the JMeter load test:
 
-1. Run a mock HTTP server:
+1. Use Java 21
+2. Use JMeter 5.6.1
+3. Run a mock HTTP server:
    * ```shell
      ./gradlew servers:server-wiremock:run
      ```
-2. Build the JMeter plugin distribution:
+4. Build the JMeter plugin distribution:
    * ```shell
      ./gradlew :client-jmeter-plugin:installDist
      ```
-3. Run the load test:
+5. Run the load test:
    * ```shell
      ./run-jmeter-load-test.sh
      ```
-4. Optionally, edit the test plan:
+6. Optionally, edit the test plan:
    * ```shell
      ./edit-jmeter-load-test.sh
      ```

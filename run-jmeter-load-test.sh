@@ -5,7 +5,7 @@
 
 set -eu
 
-assertJavaVersion17() {
+assertJavaVersion21() {
   # `java --full-version` will print one line to standard out containing a prefix and the "Version String". See https://openjdk.java.net/jeps/223
   # There's a regular expression in the document, but it is not practical to use. Instead, we are simply interested in
   # the Java MAJOR version. Java releases follow the MAJOR.MINOR.SECURITY pattern EXCEPT for early access releases which
@@ -14,8 +14,8 @@ assertJavaVersion17() {
   VERSION_OUTPUT=$("$JAVA_HOME/bin/java" --full-version)
   if [[ $VERSION_OUTPUT =~ ([0-9]+) ]]; then
     local major=${BASH_REMATCH[1]}
-    if [[ $major != 17 ]]; then
-      echo >&2 "Requires Java 17 but found Java $major"
+    if [[ $major != 21 ]]; then
+      echo >&2 "Requires Java 21 but found Java $major"
       exit 1
     fi
   else
@@ -24,7 +24,7 @@ assertJavaVersion17() {
   fi
 }
 
-assertJavaVersion17
+assertJavaVersion21
 
 if [[ ! -f client-jmeter-plugin/build/install/client-jmeter-plugin/client-jmeter-plugin.jar ]]; then
   echo >&2 "The JMeter plugin (the 'client-jmeter-plugin' project) needs to be built before running the JMeter test. Please see the README for instructions."
@@ -39,14 +39,14 @@ if [[ -d test-report ]]; then
   rm -rf test-report
 fi
 
-export JVM_ARGS="-Dnashorn.args=--no-deprecation-warning --enable-preview"
-# Run with JVM debug
-#export JVM_ARGS="-Dnashorn.args=--no-deprecation-warning --enable-preview -agentlib:jdwp=transport=dt_socket,server=n,address=localhost:5005,suspend=y"
-jmeter -n \
-  -t test-plan.jmx \
-  -l log.jtl \
-  -e \
-  -o test-report \
-  -Lorg.apache.jmeter.protocol.java.sampler=DEBUG
+# Uncomment the JVM_ARGS line below to run with JVM debug
+#export JVM_ARGS="-agentlib:jdwp=transport=dt_socket,server=n,address=localhost:5005,suspend=y"
+
+jmeter --nongui \
+  --testfile test-plan.jmx \
+  --logfile log.jtl \
+  --reportatendofloadtests \
+  --reportoutputfolder test-report \
+  --loglevel org.apache.jmeter.protocol.java.sampler=DEBUG
 
 open test-report/index.html
