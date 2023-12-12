@@ -31,7 +31,7 @@ JMeter load test. It is broken down into a collection of subprojects:
 
 Follow these instructions to run a scenario:
 
-1. Use Java 17
+1. Use Java 21
 2. Run a mock HTTP server:
    * ```shell
      ./gradlew servers:server-wiremock:run
@@ -113,12 +113,12 @@ General clean-ups, changes and things I wish to implement for this project:
 * [ ] Replace `dependency-constraints` with a TOML-based version catalog. Although consider if the `dependendency-constraints-jmeter`
   actually serves a unique purpose that we can't get from a TOML-based version catalog. Maybe use two different version
   catalogs?
-* [ ] Major upgrade to http4k 5.x
+* [x] DONE Major upgrade to http4k 5.x
 * [ ] Major upgrade to WireMock 3.x
-* [ ] Upgrade to HttpComponents 5.3.x
-* [ ] Consider upgrading to SLF4J 2.x (but the other dependencies, especially JMeter, might not be ready for it)
+* [x] DONE Upgrade to HttpComponents client 5.3.x
+* [x] DONE Consider upgrading to SLF4J 2.x (but the other dependencies, especially JMeter, might not be ready for it)
 * [ ] Upgrade Spring Boot to 3.x
-* [ ] Upgrade to Gradle 8.5
+* [x] DONE Upgrade to Gradle 8.5
 
 
 ## Notes

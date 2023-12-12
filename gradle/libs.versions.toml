@@ -1,0 +1,4 @@
+[plugins]
+# Kotlin releases: https://kotlinlang.org/docs/releases.html#release-details
+# Kotlin "JVM" Gradle plugin: https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
+kotlin-jvm = { version = "1.9.21", id = "org.jetbrains.kotlin.jvm" }

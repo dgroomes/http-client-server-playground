@@ -1,6 +1,6 @@
 plugins {
     id("common")
-    kotlin("jvm") version "1.9.21" // Kotlin releases: https://kotlinlang.org/docs/releases.html#release-details
+    alias(libs.plugins.kotlin.jvm)
     application
 }
 
